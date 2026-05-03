@@ -9,99 +9,127 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:#eef1f8;--card:#fff;
-  --navy:#002b6e;--blue:#0057b8;--sky:#0099d9;--purple:#7c3aed;
-  --text:#111827;--sub:#6b7280;--border:#e5e7eb;--yellow:#ffd700;
+  --bg:#f5f5e8;
+  --card:#fffffe;
+  --lime:#c8f000;
+  --lime-dark:#a0c400;
+  --ink:#111111;
+  --ink2:#444444;
+  --border-w:2px;
+  --radius:18px;
+  --radius-sm:12px;
+  --shadow:3px 3px 0px #111111;
+  --shadow-sm:2px 2px 0px #111111;
+  --red:#ff4d4d;--red-bg:#fff0f0;--red-border:#ffb3b3;
+  --purple:#7c3aed;
 }
 body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh;}
 
 /* PASSWORD */
 #pw-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999;padding:1.5rem;}
-.pw-card{background:var(--card);border-radius:20px;box-shadow:0 8px 32px rgba(0,40,120,0.12);padding:2.5rem 2rem;width:100%;max-width:360px;text-align:center;}
+.pw-card{background:var(--card);border-radius:var(--radius);border:var(--border-w) solid var(--ink);box-shadow:var(--shadow);padding:2.5rem 2rem;width:100%;max-width:360px;text-align:center;}
 .pw-emoji{font-size:48px;margin-bottom:12px;}
-.pw-title{font-size:20px;font-weight:900;color:var(--navy);margin-bottom:6px;}
-.pw-sub{font-size:13px;color:var(--sub);margin-bottom:1.5rem;line-height:1.6;}
-.pw-input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:16px;font-family:'Noto Sans JP',sans-serif;color:var(--text);text-align:center;letter-spacing:.2em;margin-bottom:.75rem;transition:border-color .15s;}
-.pw-input:focus{outline:none;border-color:var(--sky);}
-.pw-btn{width:100%;padding:12px;border:none;border-radius:10px;background:var(--navy);color:#fff;font-size:14px;font-weight:700;font-family:'Noto Sans JP',sans-serif;cursor:pointer;transition:background .15s;}
-.pw-btn:hover{background:var(--blue);}
-.pw-error{font-size:12px;color:#dc2626;margin-top:6px;min-height:18px;}
+.pw-title{font-size:22px;font-weight:900;color:var(--ink);margin-bottom:6px;}
+.pw-sub{font-size:13px;color:var(--ink2);margin-bottom:1.5rem;line-height:1.6;}
+.pw-input{width:100%;padding:12px 16px;border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);font-size:16px;font-family:'Noto Sans JP',sans-serif;color:var(--ink);text-align:center;letter-spacing:.2em;margin-bottom:.75rem;background:var(--bg);transition:box-shadow .15s;}
+.pw-input:focus{outline:none;box-shadow:var(--shadow-sm);}
+.pw-btn{width:100%;padding:13px;border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);background:var(--lime);color:var(--ink);font-size:15px;font-weight:900;font-family:'Noto Sans JP',sans-serif;cursor:pointer;box-shadow:var(--shadow-sm);transition:all .1s;}
+.pw-btn:hover{background:var(--lime-dark);}
+.pw-btn:active{box-shadow:none;transform:translate(2px,2px);}
+.pw-error{font-size:12px;color:var(--red);margin-top:6px;min-height:18px;}
 
 /* APP */
 #app{display:none;}
 .page{padding:2rem 1.25rem 3rem;max-width:1100px;margin:0 auto;}
-.header{text-align:center;margin-bottom:1.75rem;}
-.header h1{font-size:26px;font-weight:900;color:var(--text);display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px;}
-.header p{font-size:13px;color:var(--sub);}
+.header{text-align:center;margin-bottom:2rem;}
 
-.panel{background:var(--card);border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:1.5rem;margin-bottom:1.25rem;}
-.panel-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:1rem;}
-.field-label{font-size:13px;font-weight:500;color:var(--text);margin-bottom:6px;}
-.name-input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'Noto Sans JP',sans-serif;color:var(--text);background:#fff;transition:border-color .15s;margin-bottom:1.5rem;}
-.name-input:focus{outline:none;border-color:var(--sky);}
-.name-input:disabled{background:#f9fafb;color:var(--sub);}
+.header h1{font-size:28px;font-weight:900;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px;}
+.header p{font-size:13px;color:var(--ink2);}
+
+.panel{background:var(--card);border-radius:var(--radius);border:var(--border-w) solid var(--ink);box-shadow:var(--shadow);padding:1.75rem;margin-bottom:1.5rem;}
+.panel-title{font-size:18px;font-weight:900;color:var(--ink);margin-bottom:1.25rem;}
+.field-label{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.name-input{width:100%;padding:13px 16px;border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);font-size:14px;font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:var(--bg);transition:box-shadow .15s;margin-bottom:1.5rem;}
+.name-input:focus{outline:none;box-shadow:var(--shadow-sm);}
+.name-input:disabled{opacity:.5;}
 
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
 @media(max-width:640px){.two-col{grid-template-columns:1fr;}}
 
 .sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;}
-.sec-title{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:700;color:var(--text);}
-.sec-badge{font-size:12px;color:var(--sub);background:#f3f4f6;border-radius:99px;padding:2px 10px;font-weight:500;}
+.sec-title{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:900;color:var(--ink);}
+.sec-badge{font-size:11px;font-weight:700;color:var(--ink);background:var(--lime);border:1.5px solid var(--ink);border-radius:99px;padding:2px 10px;}
 
-.item-list{display:flex;flex-direction:column;gap:6px;}
-.item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;background:#fff;border:1.5px solid var(--border);cursor:pointer;transition:all .15s;user-select:none;}
-.item:hover{border-color:var(--sky);background:#f0f8ff;}
-.item.sel-1{border-color:#f59e0b;background:#fffbeb;box-shadow:0 0 0 1px #f59e0b;}
-.item.sel-2{border-color:#9ca3af;background:#f9fafb;box-shadow:0 0 0 1px #9ca3af;}
-.item.sel-3{border-color:#cd7c3a;background:#fef3e8;box-shadow:0 0 0 1px #cd7c3a;}
-.item.disabled{opacity:.38;cursor:not-allowed;}
-.item.skip{border-style:dashed;border-color:#d1d5db;}
-.item.skip:hover{border-color:var(--yellow);}
-.item.sel-skip{border-color:#ea580c;background:#fff7ed;box-shadow:0 0 0 1px #ea580c;}
-.item-thumb{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,#e0e7ff,#dbeafe);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
-.item-name{font-size:13px;font-weight:500;color:var(--text);line-height:1.4;flex:1;}
-.item-sub{font-size:11px;color:var(--sub);margin-top:2px;}
-.rank-pip{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
-.pip-1{background:#f59e0b;color:#78350f;}
-.pip-2{background:#9ca3af;color:#1f2937;}
-.pip-3{background:#cd7c3a;color:#fff;}
-.pip-skip{background:#fde68a;color:#92400e;}
+.item-list{display:flex;flex-direction:column;gap:8px;}
+.item{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:var(--radius-sm);background:var(--card);border:var(--border-w) solid var(--ink);cursor:pointer;transition:all .1s;user-select:none;box-shadow:var(--shadow-sm);}
+.item:hover{background:var(--bg);}
+.item:active{box-shadow:none;transform:translate(2px,2px);}
+.item.sel-1{border-color:var(--ink);background:var(--lime);box-shadow:var(--shadow-sm);}
+.item.sel-2{border-color:var(--ink);background:#d4f0ff;box-shadow:var(--shadow-sm);}
+.item.sel-3{border-color:var(--ink);background:#ffd6f5;box-shadow:var(--shadow-sm);}
+.item.disabled{opacity:.35;cursor:not-allowed;box-shadow:none;}
+.item.skip{border-style:dashed;}
+.item.sel-skip{background:#ffe0f0;border-style:solid;box-shadow:var(--shadow-sm);}
+.item-thumb{width:48px;height:48px;border-radius:10px;background:var(--bg);border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.item-name{font-size:13px;font-weight:700;color:var(--ink);line-height:1.4;flex:1;}
+.item-sub{font-size:11px;color:var(--ink2);margin-top:2px;font-weight:400;}
+.rank-pip{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;}
+.pip-1{background:var(--lime);color:var(--ink);}
+.pip-2{background:#d4f0ff;color:var(--ink);}
+.pip-3{background:#ffd6f5;color:var(--ink);}
+.pip-skip{background:#ffe0f0;color:var(--ink);}
 
-.area-div{font-size:11px;font-weight:700;color:var(--purple);letter-spacing:.06em;display:flex;align-items:center;gap:6px;margin:10px 0 5px;padding:0 2px;}
-.area-div::after{content:'';flex:1;height:1px;background:#ede9fe;}
+.area-div{font-size:11px;font-weight:900;color:var(--ink);letter-spacing:.06em;display:flex;align-items:center;gap:6px;margin:14px 0 6px;padding:0 2px;}
+.area-div::after{content:'';flex:1;height:2px;background:var(--ink);opacity:.12;}
+.area-div.limited{color:#b45309;}
+.area-div.limited::after{background:#f59e0b;opacity:.4;}
 
-.submit-btn{width:100%;padding:14px;border:none;border-radius:12px;background:var(--navy);color:#fff;font-size:15px;font-weight:700;font-family:'Noto Sans JP',sans-serif;cursor:pointer;transition:all .15s;margin-top:1.25rem;}
-.submit-btn:hover{background:var(--blue);}
-.submit-btn:disabled{opacity:.4;cursor:not-allowed;}
+.submit-btn{width:100%;padding:15px;border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);background:var(--lime);color:var(--ink);font-size:15px;font-weight:900;font-family:'Noto Sans JP',sans-serif;cursor:pointer;box-shadow:var(--shadow-sm);transition:all .1s;margin-top:1.25rem;letter-spacing:.04em;}
+.submit-btn:hover{background:var(--lime-dark);}
+.submit-btn:active{box-shadow:none;transform:translate(2px,2px);}
+.submit-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none;}
 
-.voter-section{background:var(--card);border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:1rem 1.5rem;margin-bottom:1.25rem;}
-.voter-head{font-size:13px;font-weight:700;color:var(--sub);margin-bottom:8px;}
+.voter-section{background:var(--card);border-radius:var(--radius);border:var(--border-w) solid var(--ink);box-shadow:var(--shadow);padding:1.25rem 1.5rem;margin-bottom:1.5rem;}
+.voter-head{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:10px;}
 .voter-chips{display:flex;flex-wrap:wrap;gap:6px;}
-.chip{font-size:12px;padding:4px 12px;border-radius:99px;background:#f3f4f6;border:1px solid var(--border);color:var(--sub);}
-.chip.me{background:#e8f5fb;border-color:var(--sky);color:var(--blue);font-weight:700;}
+.chip{font-size:12px;padding:4px 12px;border-radius:99px;background:var(--bg);border:1.5px solid var(--ink);color:var(--ink);font-weight:700;}
+.chip.me{background:var(--lime);border-color:var(--ink);}
 
-.rank-panel{background:var(--card);border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:1.5rem;}
+.rank-panel{background:var(--card);border-radius:var(--radius);border:var(--border-w) solid var(--ink);box-shadow:var(--shadow);padding:1.5rem;}
 .rank-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
-.rank-title{font-size:16px;font-weight:700;color:var(--text);}
-.refresh-btn{font-size:12px;color:var(--sub);background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:5px 12px;cursor:pointer;font-family:'Noto Sans JP',sans-serif;}
-.refresh-btn:hover{background:#f9fafb;}
+.rank-title{font-size:15px;font-weight:900;color:var(--ink);}
+.refresh-btn{font-size:12px;font-weight:700;color:var(--ink);background:var(--bg);border:1.5px solid var(--ink);border-radius:var(--radius-sm);padding:5px 12px;cursor:pointer;font-family:'Noto Sans JP',sans-serif;box-shadow:var(--shadow-sm);transition:all .1s;}
+.refresh-btn:active{box-shadow:none;transform:translate(2px,2px);}
 
-.rank-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f3f4f6;}
+.rank-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1.5px solid rgba(0,0,0,0.08);}
 .rank-row:last-child{border-bottom:none;}
-.rank-num{width:24px;font-size:16px;font-weight:700;color:#9ca3af;text-align:center;flex-shrink:0;}
-.rank-num.top{color:var(--text);}
-.rank-thumb{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,#e0e7ff,#dbeafe);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
-.rank-name{font-size:13px;font-weight:500;color:var(--text);flex:1;line-height:1.4;}
-.votes-badge{font-size:12px;background:#f3f4f6;border-radius:99px;padding:3px 10px;color:var(--sub);white-space:nowrap;flex-shrink:0;}
-.votes-badge.has{background:#e8f5fb;color:var(--blue);font-weight:700;}
-.voted-by{font-size:10px;color:var(--sub);margin-top:3px;display:flex;flex-wrap:wrap;gap:3px;}
-.voted-by span{background:#f3f4f6;border-radius:4px;padding:1px 5px;}
-.voted-by span.r1{background:#fef9c3;color:#92400e;}
-.voted-by span.r2{background:#f3f4f6;color:#374151;}
-.voted-by span.r3{background:#fef3e8;color:#92400e;}
-.rank-section{margin-top:1.25rem;}
-.empty-msg{font-size:13px;color:#c0c4cc;padding:8px 0;}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;}
+.rank-num{width:24px;font-size:16px;font-weight:900;color:rgba(0,0,0,0.25);text-align:center;flex-shrink:0;}
+.rank-num.top{color:var(--ink);}
+.rank-thumb{width:48px;height:48px;border-radius:10px;background:var(--bg);border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.rank-name{font-size:13px;font-weight:700;color:var(--ink);flex:1;line-height:1.4;}
+.votes-badge{font-size:12px;font-weight:700;background:var(--bg);border:1.5px solid var(--ink);border-radius:99px;padding:3px 10px;color:var(--ink);white-space:nowrap;flex-shrink:0;}
+.votes-badge.has{background:var(--lime);border-color:var(--ink);}
+.voted-by{font-size:10px;color:var(--ink2);margin-top:3px;display:flex;flex-wrap:wrap;gap:3px;}
+.voted-by span{background:var(--bg);border:1px solid rgba(0,0,0,0.15);border-radius:4px;padding:1px 5px;font-weight:700;}
+.voted-by span.r1{background:var(--lime);}
+.voted-by span.r2{background:#d4f0ff;}
+.voted-by span.r3{background:#ffd6f5;}
+.rank-section{margin-top:1.5rem;}
+.empty-msg{font-size:13px;color:rgba(0,0,0,0.3);padding:8px 0;}
+
+/* 休止中パネル */
+.closed-panel{background:var(--red-bg);border:var(--border-w) solid var(--red);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;margin-top:1.5rem;}
+.closed-title{font-size:15px;font-weight:900;color:var(--red);margin-bottom:1rem;display:flex;align-items:center;gap:6px;}
+.closed-list{display:flex;flex-direction:column;gap:8px;}
+.closed-item{display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--red-border);border-radius:var(--radius-sm);padding:10px 13px;}
+.closed-thumb{width:44px;height:44px;border-radius:9px;background:#fee2e2;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.closed-name{font-size:13px;font-weight:700;color:var(--ink);flex:1;}
+.closed-period{font-size:11px;color:var(--red);margin-top:2px;font-weight:700;}
+.closed-badge{font-size:10px;font-weight:900;padding:3px 10px;border-radius:99px;white-space:nowrap;flex-shrink:0;border:1.5px solid;}
+.badge-permanent{background:#fee2e2;color:var(--red);border-color:var(--red);}
+.badge-temp{background:#fef9c3;color:#92400e;border-color:#d97706;}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 20px;border-radius:var(--radius-sm);font-size:13px;font-weight:700;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;}
 .toast.show{opacity:1;}
 </style>
 </head>
@@ -121,8 +149,8 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh
 <div id="app">
 <div class="page">
   <div class="header">
-    <h1>🎢 USJ旅行プラン投票</h1>
-    <p>名前を入力して、乗りたいアトラクション・食べたいものを3つずつ選んで投票しよう！</p>
+    <h1>USJプラン投票</h1>
+    <p>名前を入力して、乗りたいアトラクション・食べたいものを3つずつ選んで投票して！</p>
   </div>
 
   <div class="panel">
@@ -168,17 +196,54 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh
       <div id="food-rank"><div class="empty-msg">読み込み中...</div></div>
     </div>
   </div>
+
+  <!-- 休止中アトラクション一覧 -->
+  <div class="closed-panel">
+    <div class="closed-title">🚫 6月28日時点 休止中のアトラクション</div>
+    <div class="closed-list">
+      <div class="closed-item">
+        <div class="closed-thumb">🌌</div>
+        <div style="flex:1">
+          <div class="closed-name">スペース・ファンタジー・ザ・ライド</div>
+          <div class="closed-period">2025年6月2日〜当面の間</div>
+        </div>
+        <div class="closed-badge badge-permanent">長期休止</div>
+      </div>
+      <div class="closed-item">
+        <div class="closed-thumb">🌊</div>
+        <div style="flex:1">
+          <div class="closed-name">ジュラシック・パーク・ザ・ライド</div>
+          <div class="closed-period">2026年6月24日〜7月7日</div>
+        </div>
+        <div class="closed-badge badge-temp">一時休止</div>
+      </div>
+      <div class="closed-item">
+        <div class="closed-thumb">🎭</div>
+        <div style="flex:1">
+          <div class="closed-name">セサミストリート 4-D ムービーマジック™</div>
+          <div class="closed-period">2026年1月8日〜当面の間</div>
+        </div>
+        <div class="closed-badge badge-permanent">長期休止</div>
+      </div>
+      <div class="closed-item">
+        <div class="closed-thumb">🐸</div>
+        <div style="flex:1">
+          <div class="closed-name">シュレック 4-D アドベンチャー</div>
+          <div class="closed-period">2026年1月8日〜当面の間</div>
+        </div>
+        <div class="closed-badge badge-permanent">長期休止</div>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// ========== 設定（ここだけ変更OK） ==========
-const PASSWORD     = 'usj2026';  // ← パスワードを変えるならここ
+const PASSWORD     = 'usj2026';
 const SUPABASE_URL = 'https://huinncpseglimjirvvok.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1aW5uY3BzZWdsaW1qaXJ2dm9rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3Nzc2NzAsImV4cCI6MjA5MzM1MzY3MH0.jB4mhugTZNsIdfip9HbTAegvAhrTDtz4xxS5BFwcsqY';
-// =============================================
 
 function checkPw(){
   const val=document.getElementById('pwInput').value;
@@ -200,7 +265,6 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-// ===== Supabase API =====
 async function sbFetch(path,method='GET',body=null){
   const res=await fetch(SUPABASE_URL+'/rest/v1/'+path,{
     method,
@@ -208,7 +272,7 @@ async function sbFetch(path,method='GET',body=null){
       'apikey':SUPABASE_KEY,
       'Authorization':'Bearer '+SUPABASE_KEY,
       'Content-Type':'application/json',
-      'Prefer': method==='POST'?'resolution=merge-duplicates,return=minimal':'',
+      'Prefer':method==='POST'?'resolution=merge-duplicates,return=minimal':'',
     },
     body:body?JSON.stringify(body):null
   });
@@ -217,8 +281,10 @@ async function sbFetch(path,method='GET',body=null){
   return res.json();
 }
 
-// ===== データ =====
 const RIDE_AREAS=[
+  {area:'希望なし',icon:'🙅',rides:[
+    {id:'r0',icon:'🚶',name:'希望なし',sub:'みんなに任せる！',skip:true},
+  ]},
   {area:'スーパー・ニンテンドー・ワールド',icon:'🍄',rides:[
     {id:'r1',icon:'🏎️',name:'マリオカート〜クッパの挑戦状〜',sub:'大人気ARライド'},
     {id:'r2',icon:'🐢',name:'ヨッシー・アドベンチャー',sub:'のんびり探検ライド'},
@@ -239,14 +305,9 @@ const RIDE_AREAS=[
     {id:'r12',icon:'🛫',name:'フライング・スヌーピー',sub:'ふわふわ空中散歩'},
     {id:'r13',icon:'🎀',name:'ハローキティのカップケーキ・ドリーム',sub:'可愛いカップライド'},
   ]},
-  {area:'ジュラシック・パーク',icon:'🦕',rides:[
-    {id:'r14',icon:'🦖',name:'ザ・フライング・ダイナソー',sub:'逆さ吊りコースター'},
-    {id:'r15',icon:'🌊',name:'ジュラシック・パーク・ザ・ライド',sub:'激流系ウォーターライド'},
-  ]},
   {area:'ハリウッド・エリア',icon:'🎬',rides:[
     {id:'r16',icon:'🔄',name:'ハリウッド・ドリーム ～バックドロップ～',sub:'後ろ向きコースター'},
     {id:'r17',icon:'🎢',name:'ハリウッド・ドリーム・ザ・ライド',sub:'爽快コースター'},
-    {id:'r18',icon:'🌌',name:'スペース・ファンタジー・ザ・ライド',sub:'宇宙旅行シューター'},
     {id:'r19',icon:'🎸',name:'ユニバーサル・モンスター・ライブ・ロックンロール・ショー',sub:'ライブショー'},
     {id:'r20',icon:'🐒',name:'プレイング・ウィズおさるのジョージ',sub:'キッズアトラクション'},
     {id:'r21',icon:'🎤',name:'シング・オン・ツアー',sub:'4Dライブショー'},
@@ -254,26 +315,55 @@ const RIDE_AREAS=[
   {area:'アミティ・ビレッジ',icon:'🦈',rides:[
     {id:'r22',icon:'🚤',name:'ジョーズ',sub:'サメのスリルボートライド'},
   ]},
+  {area:'ジュラシック・パーク',icon:'🦕',rides:[
+    {id:'r14',icon:'🦖',name:'ザ・フライング・ダイナソー',sub:'逆さ吊りコースター'},
+  ]},
   {area:'ウォーターワールド',icon:'💧',rides:[
     {id:'r23',icon:'🌊',name:'ウォーターワールド',sub:'超大型ライブショー'},
   ]},
+  {area:'期間限定（〜6/28開催中）',icon:'🎪',rides:[
+    {id:'r30',icon:'🔍',name:'名探偵コナン・ザ・エスケープ',sub:'リアル脱出ゲーム・〜6/30'},
+    {id:'r31',icon:'🏎️',name:'名探偵コナン×ストーリー・ライド',sub:'コースター×コナン・〜6/30'},
+    {id:'r32',icon:'⚔️',name:'呪術廻戦×ストーリー・ライド 第2弾',sub:'ハリドリ搭載・〜8/18'},
+    {id:'r33',icon:'🧝',name:'葬送のフリーレン ストーリー・ウォーク',sub:'没入型ウォークスルー・〜2027/1'},
+    {id:'r34',icon:'🦕',name:'ジュラシック・ワールド・ジャーニー',sub:'恐竜リアル体験・〜8/31'},
+  ]},
 ];
 const ALL_RIDES=RIDE_AREAS.flatMap(a=>a.rides);
-const FOOD=[
-  {id:'f0',icon:'🙅',name:'希望なし',sub:'どこでもOK！',skip:true},
-  {id:'f1',icon:'🍺',name:'バタービール',sub:'ハリポタエリア'},
-  {id:'f2',icon:'🍗',name:'ターキーレッグ',sub:'ジュラシックエリア'},
-  {id:'f3',icon:'🍩',name:'三ツ目チョコドーナツ',sub:'ミニオン限定'},
-  {id:'f4',icon:'🎃',name:'かぼちゃジュース',sub:'ハリポタエリア'},
-  {id:'f5',icon:'🍦',name:'クロワッサン・アイス',sub:'人気スイーツ'},
-  {id:'f6',icon:'🥘',name:'クラムチャウダー',sub:'ブレッドボウル入り'},
-  {id:'f7',icon:'🍱',name:'マリオランチボックス',sub:'フォトジェニック弁当'},
-  {id:'f8',icon:'🧁',name:'ハニーデュークスのお菓子',sub:'魔法菓子店'},
-  {id:'f9',icon:'🍔',name:'バーガー各種',sub:'クラシックアメリカン'},
-  {id:'f10',icon:'🌿',name:'キノコのキッシュ',sub:'ニンテンドーワールド'},
-  {id:'f11',icon:'🍹',name:'パーク限定スムージー',sub:'フルーツフレーバー'},
-  {id:'f12',icon:'🍫',name:'チョコレートフロッグ',sub:'ハリポタ限定'},
+
+const FOOD_AREAS=[
+  {area:'希望なし',icon:'🙅',foods:[
+    {id:'f0',icon:'🙅',name:'希望なし',sub:'どこでもOK！',skip:true},
+  ]},
+  {area:'スーパー・ニンテンドー・ワールド',icon:'🍄',foods:[
+    {id:'f7',icon:'🍱',name:'マリオランチボックス',sub:'キノピオカフェ・フォトジェニック弁当'},
+    {id:'f10',icon:'🌿',name:'キノコのキッシュ',sub:'キノピオカフェ・ニンテンドーワールド限定'},
+    {id:'f13',icon:'🍹',name:'スター・ドリンク',sub:'ジャングル・ビート・シェイク'},
+  ]},
+  {area:'ウィザーディング・ワールド・オブ・ハリー・ポッター',icon:'🏰',foods:[
+    {id:'f1',icon:'🍺',name:'バタービール',sub:'三本の箒・USJ定番ドリンク'},
+    {id:'f4',icon:'🎃',name:'かぼちゃジュース',sub:'三本の箒・ハリポタエリア限定'},
+    {id:'f8',icon:'🧁',name:'ハニーデュークスのお菓子',sub:'ハニーデュークス・魔法菓子店'},
+    {id:'f14',icon:'🥧',name:'ホグワーツミートパイ',sub:'マジック・ニープ・カート'},
+  ]},
+  {area:'ミニオン・パーク',icon:'🟡',foods:[
+    {id:'f3',icon:'🍩',name:'三ツ目チョコドーナツ',sub:'ミニオン・カフェ・限定スイーツ'},
+  ]},
+  {area:'ジュラシック・パーク',icon:'🦕',foods:[
+    {id:'f2',icon:'🍗',name:'ターキーレッグ',sub:'ジュラシックエリア・定番フード'},
+    {id:'f6',icon:'🥘',name:'クラムチャウダー',sub:'ロストワールドレストラン・ブレッドボウル入り'},
+  ]},
+  {area:'アミティ・ビレッジ',icon:'🦈',foods:[
+    {id:'f15',icon:'🦈',name:'サメ肉ナゲット',sub:'アミティ・ランディング・レストラン'},
+  ]},
+  {area:'ハリウッド・エリア',icon:'🎬',foods:[
+    {id:'f9',icon:'🍔',name:'ハンバーガー',sub:'メルズ・ドライブイン・アメリカン'},
+    {id:'f5',icon:'🍦',name:'クロワッサン・アイス',sub:'ビバリーヒルズ・ブランジェリー'},
+    {id:'f11',icon:'🍹',name:'パーク限定スムージー',sub:'フードカート・フルーツフレーバー'},
+    {id:'f12',icon:'🍫',name:'チョコレートフロッグ',sub:'ハリポタ限定・お土産にも'},
+  ]},
 ];
+const FOOD=FOOD_AREAS.flatMap(a=>a.foods);
 
 let ridesSelected=[],foodSelected=[],myName='',hasVoted=false;
 
@@ -282,6 +372,11 @@ function pipClass(i){return['pip-1','pip-2','pip-3'][i]||'';}
 
 function toggle(id,type){
   if(hasVoted)return;
+  if(type==='rides'){
+    const item=ALL_RIDES.find(x=>x.id===id);
+    if(item&&item.skip){ridesSelected=ridesSelected.includes('r0')?[]:['r0'];renderLists();return;}
+    if(ridesSelected.includes('r0'))ridesSelected=[];
+  }
   if(type==='food'){
     const item=FOOD.find(x=>x.id===id);
     if(item&&item.skip){foodSelected=foodSelected.includes('f0')?[]:['f0'];renderLists();return;}
@@ -295,13 +390,25 @@ function toggle(id,type){
 }
 
 function renderLists(){
+  const skipRides=ridesSelected.includes('r0');
   let rHtml='';
   RIDE_AREAS.forEach(area=>{
-    rHtml+=`<div class="area-div">${area.icon} ${area.area}</div>`;
+    if(area.area==='希望なし'){
+      const item=area.rides[0];
+      const isSel=ridesSelected.includes(item.id);
+      const disabled=(!isSel&&ridesSelected.length>0&&!skipRides)||hasVoted;
+      rHtml+=`<div class="item ${isSel?'sel-skip':''}${item.skip?' skip':''}${disabled?' disabled':''}" onclick="${disabled?'':` toggle('${item.id}','rides')`}">
+        ${isSel?`<div class="rank-pip pip-skip">✓</div>`:''}
+        <div class="item-thumb">${item.icon}</div>
+        <div style="flex:1;min-width:0"><div class="item-name">${item.name}</div><div class="item-sub">${item.sub}</div></div>
+      </div>`;
+      return;
+    }
+    rHtml+=`<div class="area-div${area.area.includes('期間限定')?' limited':''}">${area.icon} ${area.area}</div>`;
     area.rides.forEach(item=>{
       const idx=ridesSelected.indexOf(item.id);
       const isSel=idx>=0;
-      const disabled=(ridesSelected.length>=3&&!isSel)||hasVoted;
+      const disabled=(skipRides)||(ridesSelected.length>=3&&!isSel)||hasVoted;
       const pip=isSel?`<div class="rank-pip ${pipClass(idx)}">${idx+1}</div>`:'';
       rHtml+=`<div class="item ${isSel?selClass(idx):''}${disabled?' disabled':''}" onclick="${disabled?'':` toggle('${item.id}','rides')`}">
         <div class="item-thumb">${item.icon}</div>
@@ -310,22 +417,38 @@ function renderLists(){
     });
   });
   document.getElementById('rides-list').innerHTML=rHtml;
-  document.getElementById('rides-count').textContent=ridesSelected.length+'/3 選択中';
+  document.getElementById('rides-count').textContent=(ridesSelected.includes('r0')?'希望なし':ridesSelected.length+'/3')+' 選択中';
 
   const skipActive=foodSelected.includes('f0');
-  document.getElementById('food-list').innerHTML=FOOD.map(item=>{
-    const idx=foodSelected.indexOf(item.id);
-    const isSel=idx>=0;
-    const disabled=(skipActive&&!item.skip)||(foodSelected.length>=3&&!isSel&&!item.skip)||hasVoted;
-    const sc=isSel?(item.skip?'sel-skip':selClass(idx)):'';
-    const pip=isSel&&!item.skip?`<div class="rank-pip ${pipClass(idx)}">${idx+1}</div>`:
-              isSel&&item.skip?`<div class="rank-pip pip-skip">✓</div>`:'';
-    return `<div class="item ${sc}${item.skip?' skip':''}${disabled?' disabled':''}" onclick="${disabled?'':` toggle('${item.id}','food')`}">
-      <div class="item-thumb">${item.icon}</div>
-      <div style="flex:1;min-width:0"><div class="item-name">${item.name}</div><div class="item-sub">${item.sub}</div></div>
-      ${pip}</div>`;
-  }).join('');
-  document.getElementById('food-count').textContent=(skipActive?'希望なし':foodSelected.length+'/3')+' 選択中';
+  let fHtml='';
+  FOOD_AREAS.forEach(area=>{
+    if(area.area==='希望なし'){
+      // 希望なしカードだけ先頭に単独表示
+      const item=area.foods[0];
+      const isSel=foodSelected.includes(item.id);
+      const disabled=(!isSel&&foodSelected.length>0&&!foodSelected.includes('f0'))||hasVoted;
+      fHtml+=`<div class="item ${isSel?'sel-skip':''}${item.skip?' skip':''}${disabled?' disabled':''}" onclick="${disabled?'':` toggle('${item.id}','food')`}">
+        ${isSel?`<div class="rank-pip pip-skip">✓</div>`:''}
+        <div class="item-thumb">${item.icon}</div>
+        <div style="flex:1;min-width:0"><div class="item-name">${item.name}</div><div class="item-sub">${item.sub}</div></div>
+      </div>`;
+      return;
+    }
+    fHtml+=`<div class="area-div">${area.icon} ${area.area}</div>`;
+    area.foods.forEach(item=>{
+      const idx=foodSelected.indexOf(item.id);
+      const isSel=idx>=0;
+      const disabled=(skipActive&&!item.skip)||(foodSelected.length>=3&&!isSel&&!item.skip)||hasVoted;
+      const sc=isSel?selClass(idx):'';
+      const pip=isSel?`<div class="rank-pip ${pipClass(idx)}">${idx+1}</div>`:'';
+      fHtml+=`<div class="item ${sc}${disabled?' disabled':''}" onclick="${disabled?'':` toggle('${item.id}','food')`}">
+        <div class="item-thumb">${item.icon}</div>
+        <div style="flex:1;min-width:0"><div class="item-name">${item.name}</div><div class="item-sub">${item.sub}</div></div>
+        ${pip}</div>`;
+    });
+  });
+  document.getElementById('food-list').innerHTML=fHtml;
+  document.getElementById('food-count').textContent=(foodSelected.includes('f0')?'希望なし':foodSelected.filter(id=>id!=='f0').length+'/3')+' 選択中';
 }
 
 async function submitVote(){
@@ -336,11 +459,7 @@ async function submitVote(){
   const btn=document.getElementById('submitBtn');
   btn.textContent='送信中...';btn.disabled=true;
   try{
-    await sbFetch('votes','POST',{
-      name,
-      rides:ridesSelected,
-      food:foodSelected
-    });
+    await sbFetch('votes','POST',{name,rides:ridesSelected,food:foodSelected});
     hasVoted=true;
     btn.textContent='✅ 投票完了！';
     document.getElementById('nameInput').disabled=true;
@@ -359,7 +478,7 @@ function calcScores(votes,items){
   items.filter(x=>!x.skip).forEach(x=>{scores[x.id]=0;voters[x.id]=[];});
   votes.forEach(v=>{
     const arr=items===ALL_RIDES?v.rides:v.food;
-    (arr||[]).filter(id=>id!=='f0').forEach((id,i)=>{
+    (arr||[]).filter(id=>id!=='f0'&&id!=='r0').forEach((id,i)=>{
       if(scores[id]!==undefined){scores[id]+=(3-i);voters[id].push({name:v.name,rank:i+1});}
     });
   });
@@ -376,7 +495,7 @@ function renderRank(sorted,elId){
       <div class="rank-num${i<3?' top':''}">${i+1}</div>
       <div class="rank-thumb">${item.icon}</div>
       <div style="flex:1;min-width:0"><div class="rank-name">${item.name}</div>${voterHtml}</div>
-      <div class="votes-badge has">${item.pts}票</div>
+      <div class="votes-badge has">${item.pts}pt</div>
     </div>`;
   }).join('');
 }
