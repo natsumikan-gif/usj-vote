@@ -284,6 +284,7 @@ async function sbFetch(path,method='GET',body=null){
 const RIDE_AREAS=[
   {area:'希望なし',icon:'🙅',rides:[
     {id:'r0',icon:'🚶',name:'希望なし',sub:'みんなに任せる！',skip:true},
+    {id:'r99',icon:'✨',name:'その他',sub:'リストにないものを選びたい'},
   ]},
   {area:'スーパー・ニンテンドー・ワールド',icon:'🍄',rides:[
     {id:'r1',icon:'🏎️',name:'マリオカート〜クッパの挑戦状〜',sub:'大人気ARライド'},
@@ -334,6 +335,7 @@ const ALL_RIDES=RIDE_AREAS.flatMap(a=>a.rides);
 const FOOD_AREAS=[
   {area:'希望なし',icon:'🙅',foods:[
     {id:'f0',icon:'🙅',name:'希望なし',sub:'どこでもOK！',skip:true},
+    {id:'f99',icon:'✨',name:'その他',sub:'リストにないものを食べたい'},
   ]},
   {area:'スーパー・ニンテンドー・ワールド',icon:'🍄',foods:[
     {id:'f7',icon:'🍱',name:'マリオランチボックス',sub:'キノピオカフェ・フォトジェニック弁当'},
@@ -394,14 +396,26 @@ function renderLists(){
   let rHtml='';
   RIDE_AREAS.forEach(area=>{
     if(area.area==='希望なし'){
-      const item=area.rides[0];
-      const isSel=ridesSelected.includes(item.id);
-      const disabled=(!isSel&&ridesSelected.length>0&&!skipRides)||hasVoted;
-      rHtml+=`<div class="item ${isSel?'sel-skip':''}${item.skip?' skip':''}${disabled?' disabled':''}" onclick="${disabled?'':` toggle('${item.id}','rides')`}">
-        ${isSel?`<div class="rank-pip pip-skip">✓</div>`:''}
-        <div class="item-thumb">${item.icon}</div>
-        <div style="flex:1;min-width:0"><div class="item-name">${item.name}</div><div class="item-sub">${item.sub}</div></div>
-      </div>`;
+      area.rides.forEach(item=>{
+        if(item.skip){
+          const isSel=ridesSelected.includes(item.id);
+          const disabled=(!isSel&&ridesSelected.length>0&&!skipRides)||hasVoted;
+          rHtml+=`<div class="item ${isSel?'sel-skip':''}${item.skip?' skip':''}${disabled?' disabled':''}" onclick="${disabled?'':` toggle('${item.id}','rides')`}">
+            ${isSel?`<div class="rank-pip pip-skip">✓</div>`:''}
+            <div class="item-thumb">${item.icon}</div>
+            <div style="flex:1;min-width:0"><div class="item-name">${item.name}</div><div class="item-sub">${item.sub}</div></div>
+          </div>`;
+        } else {
+          const idx=ridesSelected.indexOf(item.id);
+          const isSel=idx>=0;
+          const disabled=(skipRides)||(ridesSelected.length>=3&&!isSel)||hasVoted;
+          const pip=isSel?`<div class="rank-pip ${pipClass(idx)}">${idx+1}</div>`:'';
+          rHtml+=`<div class="item ${isSel?selClass(idx):''}${disabled?' disabled':''}" onclick="${disabled?'':` toggle('${item.id}','rides')`}">
+            <div class="item-thumb">${item.icon}</div>
+            <div style="flex:1;min-width:0"><div class="item-name">${item.name}</div><div class="item-sub">${item.sub}</div></div>
+            ${pip}</div>`;
+        }
+      });
       return;
     }
     rHtml+=`<div class="area-div${area.area.includes('期間限定')?' limited':''}">${area.icon} ${area.area}</div>`;
@@ -423,15 +437,27 @@ function renderLists(){
   let fHtml='';
   FOOD_AREAS.forEach(area=>{
     if(area.area==='希望なし'){
-      // 希望なしカードだけ先頭に単独表示
-      const item=area.foods[0];
-      const isSel=foodSelected.includes(item.id);
-      const disabled=(!isSel&&foodSelected.length>0&&!foodSelected.includes('f0'))||hasVoted;
-      fHtml+=`<div class="item ${isSel?'sel-skip':''}${item.skip?' skip':''}${disabled?' disabled':''}" onclick="${disabled?'':` toggle('${item.id}','food')`}">
-        ${isSel?`<div class="rank-pip pip-skip">✓</div>`:''}
-        <div class="item-thumb">${item.icon}</div>
-        <div style="flex:1;min-width:0"><div class="item-name">${item.name}</div><div class="item-sub">${item.sub}</div></div>
-      </div>`;
+      area.foods.forEach(item=>{
+        if(item.skip){
+          const isSel=foodSelected.includes(item.id);
+          const disabled=(!isSel&&foodSelected.length>0&&!foodSelected.includes('f0'))||hasVoted;
+          fHtml+=`<div class="item ${isSel?'sel-skip':''}${item.skip?' skip':''}${disabled?' disabled':''}" onclick="${disabled?'':` toggle('${item.id}','food')`}">
+            ${isSel?`<div class="rank-pip pip-skip">✓</div>`:''}
+            <div class="item-thumb">${item.icon}</div>
+            <div style="flex:1;min-width:0"><div class="item-name">${item.name}</div><div class="item-sub">${item.sub}</div></div>
+          </div>`;
+        } else {
+          const idx=foodSelected.indexOf(item.id);
+          const isSel=idx>=0;
+          const skipActive=foodSelected.includes('f0');
+          const disabled=(skipActive)||(foodSelected.length>=3&&!isSel)||hasVoted;
+          const pip=isSel?`<div class="rank-pip ${pipClass(idx)}">${idx+1}</div>`:'';
+          fHtml+=`<div class="item ${isSel?selClass(idx):''}${disabled?' disabled':''}" onclick="${disabled?'':` toggle('${item.id}','food')`}">
+            <div class="item-thumb">${item.icon}</div>
+            <div style="flex:1;min-width:0"><div class="item-name">${item.name}</div><div class="item-sub">${item.sub}</div></div>
+            ${pip}</div>`;
+        }
+      });
       return;
     }
     fHtml+=`<div class="area-div">${area.icon} ${area.area}</div>`;
