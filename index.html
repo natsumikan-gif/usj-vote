@@ -114,7 +114,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh
 .voted-by span.r1{background:var(--lime);}
 .voted-by span.r2{background:#d4f0ff;}
 .voted-by span.r3{background:#ffd6f5;}
-.rank-section{margin-top:1.5rem;}
+.rank-section{margin-top:0;}
 .empty-msg{font-size:13px;color:rgba(0,0,0,0.3);padding:8px 0;}
 
 /* 休止中パネル */
@@ -248,7 +248,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh
     <div class="voter-chips" id="voter-list"><div class="chip">読み込み中...</div></div>
   </div>
 
-  <div class="two-col rank-section">
+  <div class="two-col rank-section" style="margin-bottom:1.5rem;">
     <div class="rank-panel">
       <div class="rank-head">
         <div class="rank-title">📈 アトラクション人気ランキング</div>
@@ -264,11 +264,9 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh
     </div>
   </div>
 
-  <div style="background:rgba(0,0,0,0.06);border:2px dashed rgba(0,0,0,0.2);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:1rem;font-size:13px;font-weight:700;color:var(--ink2);text-align:center;">
-    🔒 投票は締め切られました。以下は投票内容の記録です。
-  </div>
   <div class="panel">
     <div class="panel-title">📋 みんなの投票内容</div>
+    <div style="font-size:13px;color:var(--ink2);margin-bottom:1.25rem;">🔒 投票は締め切られました。以下は投票内容の記録です。</div>
     <div class="field-label">名前</div>
     <input class="name-input" id="nameInput" type="text" placeholder="投票は終了しました" maxlength="20" disabled/>
     <div class="two-col">
@@ -363,10 +361,13 @@ function showToast(msg){
 async function sbFetch(path,method='GET',body=null){
   const res=await fetch(SUPABASE_URL+'/rest/v1/'+path,{
     method,
+    cache:'no-store',
     headers:{
       'apikey':SUPABASE_KEY,
       'Authorization':'Bearer '+SUPABASE_KEY,
       'Content-Type':'application/json',
+      'Cache-Control':'no-cache, no-store, must-revalidate',
+      'Pragma':'no-cache',
       'Prefer':method==='POST'?'resolution=merge-duplicates,return=minimal':'',
     },
     body:body?JSON.stringify(body):null
@@ -623,7 +624,8 @@ function renderRank(sorted,elId){
 
 async function loadResults(){
   try{
-    const votes=await sbFetch('votes?select=name,rides,food&order=created_at.asc');
+    const ts=Date.now();
+    const votes=await sbFetch(`votes?select=name,rides,food&order=created_at.asc&_=${ts}`);
     document.getElementById('voter-list').innerHTML=(votes&&votes.length)
       ?votes.map(v=>`<div class="chip${v.name===myName?' me':''}">${v.name}${v.name===myName?' ✓':''}</div>`).join('')
       :'<div class="chip">まだ投票者なし</div>';
