@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>USJ旅行プラン投票</title>
+<title>USJ旅行計画</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
@@ -138,7 +138,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh
 <div id="pw-screen">
   <div class="pw-card">
     <div class="pw-emoji">🎢</div>
-    <div class="pw-title">USJ旅行プラン投票</div>
+    <div class="pw-title">USJ旅行計画</div>
     <div class="pw-sub">このページはメンバー限定です。<br>パスワードを入力してください。</div>
     <input class="pw-input" id="pwInput" type="password" placeholder="••••••" maxlength="20" onkeydown="if(event.key==='Enter')checkPw()"/>
     <button class="pw-btn" onclick="checkPw()">入る</button>
@@ -149,31 +149,98 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh
 <div id="app">
 <div class="page">
   <div class="header">
-    <h1>USJプラン投票</h1>
-    <p>名前を入力して、乗りたいアトラクション・食べたいものを3つずつ選んで投票して！</p>
+    <h1>USJ旅行計画</h1>
+    <p>USJの旅程・予算・みんなの投票結果まとめ</p>
   </div>
 
-  <div class="panel">
-    <div class="panel-title">あなたの投票</div>
-    <div class="field-label">名前</div>
-    <input class="name-input" id="nameInput" type="text" placeholder="名前を入力してください" maxlength="20"/>
-    <div class="two-col">
-      <div>
-        <div class="sec-head">
-          <div class="sec-title"><span>🎡</span>アトラクション</div>
-          <div class="sec-badge" id="rides-count">0/3 選択中</div>
+
+  <!-- 予算セクション -->
+  <div class="panel" id="budget-section">
+    <div class="panel-title">💰 予算案（5人 / 6月28日）</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;">
+      <!-- プランA -->
+      <div style="background:var(--bg);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:1rem;">
+        <div style="font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:10px;letter-spacing:.06em;">スタジオパスのみ　<a href="https://store.usj.co.jp/ja/jp/c/ticket/1DBASIC" target="_blank" style="font-size:10px;color:var(--ink2);text-decoration:underline;font-weight:700;">詳細はこちら ↗</a></div>
+        <div style="background:var(--card);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:10px;text-align:center;">
+          <div style="font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:2px;">1人あたり</div>
+          <div style="font-size:32px;font-weight:900;color:var(--ink);line-height:1.1;">8,900<span style="font-size:16px;">円</span></div>
         </div>
-        <div class="item-list" id="rides-list"></div>
+        <div style="font-size:11px;color:var(--ink2);margin-bottom:6px;">5人合計：44,500円</div>
+        <div style="font-size:11px;color:var(--ink2);line-height:1.7;">入場券のみ<br>整理券を当日取得<br>（確約なし）</div>
       </div>
-      <div>
-        <div class="sec-head">
-          <div class="sec-title"><span>🍴</span>食べたいもの</div>
-          <div class="sec-badge" id="food-count">0/3 選択中</div>
+      <!-- プランB -->
+      <div style="background:var(--lime);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:1rem;box-shadow:var(--shadow-sm);">
+        <div style="font-size:11px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:.06em;">スタジオパス＋EXパス4　<a href="https://store.usj.co.jp/ja/jp/c/expresspass/EXP0069" target="_blank" style="font-size:10px;color:var(--ink2);text-decoration:underline;font-weight:700;">詳細はこちら ↗</a></div>
+        <div style="background:var(--ink);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:10px;text-align:center;">
+          <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:2px;">1人あたり</div>
+          <div style="font-size:32px;font-weight:900;color:var(--lime);line-height:1.1;">25,700<span style="font-size:16px;">円</span></div>
         </div>
-        <div class="item-list" id="food-list"></div>
+        <div style="font-size:11px;color:var(--ink);margin-bottom:6px;">5人合計：128,500円</div>
+        <div style="font-size:11px;color:var(--ink);line-height:1.7;">EXパス4（16,800円）付き<br>ドンキーコング確約<br>マリオカート含む4本</div>
       </div>
     </div>
-    <button class="submit-btn" id="submitBtn" onclick="submitVote()">投票する 🎉</button>
+    <div style="background:var(--bg);border:1.5px dashed var(--ink);border-radius:var(--radius-sm);padding:12px;font-size:12px;color:var(--ink2);line-height:1.7;">
+      ※ EXパス5（18,900円）の場合は5人合計 <strong style="color:var(--ink)">139,000円</strong>（1人27,800円）<br>
+      ※ 6/28（日）スタジオパス料金はカレンダーより確認済み<br>
+      ※ EXパス4・5の6/28価格も公式カレンダーより確認済み
+    </div>
+  </div>
+
+  <!-- スケジュール案 -->
+  <div class="panel" id="schedule-section">
+    <div class="panel-title">🗓 当日スケジュール案（7:00集合）</div>
+    <div style="position:relative;padding-left:64px;">
+      <div style="position:absolute;left:44px;top:0;bottom:0;width:2px;background:rgba(0,0,0,0.12);"></div>
+      <style>
+        .tl{position:relative;margin-bottom:14px;}
+        .tl-t{position:absolute;left:-64px;width:44px;text-align:right;font-size:11px;font-weight:700;color:var(--ink2);line-height:1.3;padding-top:3px;}
+        .tl-d{position:absolute;left:-22px;top:7px;width:10px;height:10px;border-radius:50%;border:2px solid var(--bg);z-index:1;}
+        .d-red{background:#ff4d4d;}
+        .d-blue{background:#0057b8;}
+        .d-green{background:#2d8a2d;}
+        .d-gray{background:#888;}
+        .d-warn{background:#d97706;}
+        .tl-c{background:var(--card);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:10px 13px;box-shadow:var(--shadow-sm);}
+        .tl-c.red{border-left:4px solid #ff4d4d;}
+        .tl-c.blue{border-left:4px solid #0057b8;}
+        .tl-c.green{border-left:4px solid #2d8a2d;}
+        .tl-c.warn{border-left:4px solid #d97706;}
+        .tl-title{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:3px;}
+        .tl-body{font-size:11px;color:var(--ink2);line-height:1.65;}
+        .tl-badge{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;border:1.5px solid var(--ink);margin-left:5px;}
+        .tb-red{background:#ffe0e0;color:#cc0000;}
+        .tb-blue{background:#e0eeff;color:#0044aa;}
+        .tb-green{background:#e0f5e0;color:#1a6e1a;}
+        .tb-gray{background:var(--bg);color:var(--ink2);}
+      </style>
+      <div class="tl"><div class="tl-t">7:00</div><div class="tl-d d-red"></div>
+        <div class="tl-c red"><div class="tl-title">USJ入場口に集合<span class="tl-badge tb-red">集合</span></div>
+        <div class="tl-body">アプリ起動・チケット登録を前日に完了させておくこと。代表者がe整理券取得担当。</div></div></div>
+      <div class="tl"><div class="tl-t">7:30〜<br>8:00</div><div class="tl-d d-red"></div>
+        <div class="tl-c red"><div class="tl-title">前倒し開園・入場後すぐe整理券取得<span class="tl-badge tb-red">最重要</span></div>
+        <div class="tl-body">入場直後に代表者が5人分のニンテンドーワールド整理券をアプリで取得。早い時間帯を指定。</div></div></div>
+      <div class="tl"><div class="tl-t">8:00〜<br>9:00</div><div class="tl-d d-blue"></div>
+        <div class="tl-c blue"><div class="tl-title">ニンテンドーワールドへ直行（フリータイム狙い）<span class="tl-badge tb-blue">最優先</span></div>
+        <div class="tl-body">開園直後は整理券不要のフリー入場タイム。ドンキーコングのクレイジー・トロッコへ直行。</div></div></div>
+      <div class="tl"><div class="tl-t">9:00〜<br>10:00</div><div class="tl-d d-blue"></div>
+        <div class="tl-c blue"><div class="tl-title">ドンキーコングのクレイジー・トロッコ 🍌<span class="tl-badge tb-blue">必須①</span></div>
+        <div class="tl-body">乗車後はエリアを出ないこと。ヨッシーへ移動。待ち時間目安30〜60分。</div></div></div>
+      <div class="tl"><div class="tl-t">10:00〜<br>10:45</div><div class="tl-d d-blue"></div>
+        <div class="tl-c blue"><div class="tl-title">ヨッシー・アドベンチャー 🐢<span class="tl-badge tb-blue">必須②</span></div>
+        <div class="tl-body">待ち時間目安20〜40分。エリア内でマリオカートも時間があれば。</div></div></div>
+      <div class="tl"><div class="tl-t">10:45〜<br>11:30</div><div class="tl-d d-green"></div>
+        <div class="tl-c green"><div class="tl-title">キノピオカフェ：キノコのキッシュ 🌿<span class="tl-badge tb-green">必須③</span></div>
+        <div class="tl-body">11時前後は比較的空いていて狙い目。必須3つ完了！ここでエリアを出る。</div></div></div>
+      <div class="tl"><div class="tl-t">11:30〜<br>14:00</div><div class="tl-d d-gray"></div>
+        <div class="tl-c"><div class="tl-title">他エリアのアトラクション＆ランチ<span class="tl-badge tb-gray">自由行動</span></div>
+        <div class="tl-body">ハリポタ・ミニオン・フライングダイナソーなど。11時台に早めのランチを推奨（12〜13時は最混雑）。</div></div></div>
+      <div class="tl"><div class="tl-t">14:00〜<br>15:00</div><div class="tl-d d-warn"></div>
+        <div class="tl-c warn"><div class="tl-title">NO LIMIT! パレード観覧<span class="tl-badge" style="background:#fef9c3;color:#92400e;border:1.5px solid var(--ink)">混雑ピーク</span></div>
+        <div class="tl-body">この時間帯はアトラクション待ち時間が最大。パレードで休憩するのが得策。</div></div></div>
+      <div class="tl"><div class="tl-t">15:00〜<br>閉園</div><div class="tl-d d-gray"></div>
+        <div class="tl-c"><div class="tl-title">残りアトラクション・お土産<span class="tl-badge tb-gray">自由行動</span></div>
+        <div class="tl-body">夕方以降ニンテンドーワールドがフリー入場に戻る場合あり。アプリで随時確認。</div></div></div>
+    </div>
   </div>
 
   <div class="voter-section">
@@ -195,6 +262,32 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh
       </div>
       <div id="food-rank"><div class="empty-msg">読み込み中...</div></div>
     </div>
+  </div>
+
+  <div style="background:rgba(0,0,0,0.06);border:2px dashed rgba(0,0,0,0.2);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:1rem;font-size:13px;font-weight:700;color:var(--ink2);text-align:center;">
+    🔒 投票は締め切られました。以下は投票内容の記録です。
+  </div>
+  <div class="panel">
+    <div class="panel-title">📋 みんなの投票内容</div>
+    <div class="field-label">名前</div>
+    <input class="name-input" id="nameInput" type="text" placeholder="投票は終了しました" maxlength="20" disabled/>
+    <div class="two-col">
+      <div>
+        <div class="sec-head">
+          <div class="sec-title"><span>🎡</span>アトラクション</div>
+          <div class="sec-badge" id="rides-count">0/3 選択中</div>
+        </div>
+        <div class="item-list" id="rides-list"></div>
+      </div>
+      <div>
+        <div class="sec-head">
+          <div class="sec-title"><span>🍴</span>食べたいもの</div>
+          <div class="sec-badge" id="food-count">0/3 選択中</div>
+        </div>
+        <div class="item-list" id="food-list"></div>
+      </div>
+    </div>
+    <button class="submit-btn" id="submitBtn" disabled style="opacity:.4;cursor:not-allowed">✅ 投票は終了しました</button>
   </div>
 
   <!-- 休止中アトラクション一覧 -->
@@ -251,6 +344,8 @@ function checkPw(){
   if(val===PASSWORD){
     document.getElementById('pw-screen').style.display='none';
     document.getElementById('app').style.display='block';
+    hasVoted=true;
+    renderLists();
     loadResults();
   }else{
     err.textContent='パスワードが違います';
