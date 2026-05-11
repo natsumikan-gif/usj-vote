@@ -624,8 +624,7 @@ function renderRank(sorted,elId){
 
 async function loadResults(){
   try{
-    const ts=Date.now();
-    const votes=await sbFetch(`votes?select=name,rides,food&order=created_at.asc&_=${ts}`);
+    const votes=await sbFetch('votes?select=name,rides,food&order=created_at.asc');
     document.getElementById('voter-list').innerHTML=(votes&&votes.length)
       ?votes.map(v=>`<div class="chip${v.name===myName?' me':''}">${v.name}${v.name===myName?' ✓':''}</div>`).join('')
       :'<div class="chip">まだ投票者なし</div>';
