@@ -9,33 +9,38 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:#f5f5e8;
-  --card:#fffffe;
-  --lime:#c8f000;
-  --lime-dark:#a0c400;
-  --ink:#111111;
-  --ink2:#444444;
-  --border-w:2px;
-  --radius:18px;
-  --radius-sm:12px;
-  --shadow:3px 3px 0px #111111;
-  --shadow-sm:2px 2px 0px #111111;
-  --red:#ff4d4d;--red-bg:#fff0f0;--red-border:#ffb3b3;
+  --bg:#ffffff;
+  --card:#ffffff;
+  --mint:#3dd9b3;
+  --mint-light:#e8faf5;
+  --mint-dark:#2ab89a;
+  --lavender:#e8e4ff;
+  --peach:#fff0ec;
+  --ink:#2d3142;
+  --ink2:#6b7280;
+  --border-w:1.5px;
+  --radius:20px;
+  --radius-sm:14px;
+  --shadow:0 4px 20px rgba(0,0,0,0.08);
+  --shadow-sm:0 2px 12px rgba(0,0,0,0.06);
+  --red:#ff6b6b;--red-bg:#fff0f0;--red-border:#ffc5c5;
   --purple:#7c3aed;
+  --lime:#3dd9b3;
+  --lime-dark:#2ab89a;
 }
 body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh;}
 
 /* PASSWORD */
 #pw-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999;padding:1.5rem;}
-.pw-card{background:var(--card);border-radius:var(--radius);border:var(--border-w) solid var(--ink);box-shadow:var(--shadow);padding:2.5rem 2rem;width:100%;max-width:360px;text-align:center;}
+.pw-card{background:var(--card);border-radius:var(--radius);border:none;box-shadow:var(--shadow);padding:2.5rem 2rem;width:100%;max-width:360px;text-align:center;}
 .pw-emoji{font-size:48px;margin-bottom:12px;}
 .pw-title{font-size:22px;font-weight:900;color:var(--ink);margin-bottom:6px;}
 .pw-sub{font-size:13px;color:var(--ink2);margin-bottom:1.5rem;line-height:1.6;}
-.pw-input{width:100%;padding:12px 16px;border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);font-size:16px;font-family:'Noto Sans JP',sans-serif;color:var(--ink);text-align:center;letter-spacing:.2em;margin-bottom:.75rem;background:var(--bg);transition:box-shadow .15s;}
+.pw-input{width:100%;padding:12px 16px;border:1.5px solid #e5e7eb;border-radius:var(--radius-sm);font-size:16px;font-family:'Noto Sans JP',sans-serif;color:var(--ink);text-align:center;letter-spacing:.2em;margin-bottom:.75rem;background:#f8fafc;transition:all .15s;}
 .pw-input:focus{outline:none;box-shadow:var(--shadow-sm);}
-.pw-btn{width:100%;padding:13px;border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);background:var(--lime);color:var(--ink);font-size:15px;font-weight:900;font-family:'Noto Sans JP',sans-serif;cursor:pointer;box-shadow:var(--shadow-sm);transition:all .1s;}
-.pw-btn:hover{background:var(--lime-dark);}
-.pw-btn:active{box-shadow:none;transform:translate(2px,2px);}
+.pw-btn{width:100%;padding:13px;border:none;border-radius:var(--radius-sm);background:var(--mint);color:#fff;font-size:15px;font-weight:700;font-family:'Noto Sans JP',sans-serif;cursor:pointer;box-shadow:0 4px 12px rgba(61,217,179,0.35);transition:all .15s;}
+.pw-btn:hover{background:var(--mint-dark);}
+.pw-btn:active{transform:scale(0.98);}
 .pw-error{font-size:12px;color:var(--red);margin-top:6px;min-height:18px;}
 
 /* APP */
@@ -43,91 +48,91 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh
 .page{padding:2rem 1.25rem 3rem;max-width:1100px;margin:0 auto;}
 .header{text-align:center;margin-bottom:2rem;}
 
-.header h1{font-size:28px;font-weight:900;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px;}
+.header h1{font-size:28px;font-weight:700;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px;}
 .header p{font-size:13px;color:var(--ink2);}
 
-.panel{background:var(--card);border-radius:var(--radius);border:var(--border-w) solid var(--ink);box-shadow:var(--shadow);padding:1.75rem;margin-bottom:1.5rem;}
-.panel-title{font-size:18px;font-weight:900;color:var(--ink);margin-bottom:1.25rem;}
+.panel{background:var(--card);border-radius:var(--radius);border:none;box-shadow:var(--shadow);padding:1.75rem;margin-bottom:1.5rem;}
+.panel-title{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:1.25rem;}
 .field-label{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px;}
-.name-input{width:100%;padding:13px 16px;border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);font-size:14px;font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:var(--bg);transition:box-shadow .15s;margin-bottom:1.5rem;}
+.name-input{width:100%;padding:13px 16px;border:1.5px solid #e5e7eb;border-radius:var(--radius-sm);font-size:14px;font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#f8fafc;transition:all .15s;margin-bottom:1.5rem;}
 .name-input:focus{outline:none;box-shadow:var(--shadow-sm);}
 .name-input:disabled{opacity:.5;}
 
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
-@media(max-width:640px){.two-col{grid-template-columns:1fr;}.budget-grid{grid-template-columns:1fr;}}
+@media(max-width:640px){.two-col{grid-template-columns:1fr;}}
 
 .sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;}
 .sec-title{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:900;color:var(--ink);}
-.sec-badge{font-size:11px;font-weight:700;color:var(--ink);background:var(--lime);border:1.5px solid var(--ink);border-radius:99px;padding:2px 10px;}
+.sec-badge{font-size:11px;font-weight:700;color:var(--mint-dark);background:var(--mint-light);border:none;border-radius:99px;padding:2px 10px;}
 
 .item-list{display:flex;flex-direction:column;gap:8px;}
-.item{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:var(--radius-sm);background:var(--card);border:var(--border-w) solid var(--ink);cursor:pointer;transition:all .1s;user-select:none;box-shadow:var(--shadow-sm);}
-.item:hover{background:var(--bg);}
-.item:active{box-shadow:none;transform:translate(2px,2px);}
-.item.sel-1{border-color:var(--ink);background:var(--lime);box-shadow:var(--shadow-sm);}
-.item.sel-2{border-color:var(--ink);background:#d4f0ff;box-shadow:var(--shadow-sm);}
-.item.sel-3{border-color:var(--ink);background:#ffd6f5;box-shadow:var(--shadow-sm);}
-.item.disabled{opacity:.35;cursor:not-allowed;box-shadow:none;}
-.item.skip{border-style:dashed;}
-.item.sel-skip{background:#ffe0f0;border-style:solid;box-shadow:var(--shadow-sm);}
-.item-thumb{width:48px;height:48px;border-radius:10px;background:var(--bg);border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.item{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:var(--radius-sm);background:var(--card);border:1.5px solid #f0f0f0;cursor:pointer;transition:all .15s;user-select:none;box-shadow:var(--shadow-sm);}
+.item:hover{background:#f8fafc;border-color:#e0e0e0;}
+.item:active{transform:scale(0.99);}
+.item.sel-1{border-color:var(--mint);background:var(--mint-light);box-shadow:0 0 0 2px var(--mint);}
+.item.sel-2{border-color:#93c5fd;background:#eff6ff;box-shadow:0 0 0 2px #93c5fd;}
+.item.sel-3{border-color:#f9a8d4;background:#fdf2f8;box-shadow:0 0 0 2px #f9a8d4;}
+.item.disabled{opacity:.3;cursor:not-allowed;box-shadow:none;}
+.item.skip{border-style:dashed;border-color:#d1d5db;}
+.item.sel-skip{background:#fff7ed;border-color:#fb923c;border-style:solid;box-shadow:0 0 0 2px #fb923c;}
+.item-thumb{width:48px;height:48px;border-radius:12px;background:#f0f4f8;border:none;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
 .item-name{font-size:13px;font-weight:700;color:var(--ink);line-height:1.4;flex:1;}
 .item-sub{font-size:11px;color:var(--ink2);margin-top:2px;font-weight:400;}
-.rank-pip{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;}
-.pip-1{background:var(--lime);color:var(--ink);}
-.pip-2{background:#d4f0ff;color:var(--ink);}
-.pip-3{background:#ffd6f5;color:var(--ink);}
+.rank-pip{width:22px;height:22px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.pip-1{background:var(--mint);color:#fff;}
+.pip-2{background:#93c5fd;color:#fff;}
+.pip-3{background:#f9a8d4;color:#fff;}
 .pip-skip{background:#ffe0f0;color:var(--ink);}
 
-.area-div{font-size:11px;font-weight:900;color:var(--ink);letter-spacing:.06em;display:flex;align-items:center;gap:6px;margin:14px 0 6px;padding:0 2px;}
-.area-div::after{content:'';flex:1;height:2px;background:var(--ink);opacity:.12;}
-.area-div.limited{color:#b45309;}
+.area-div{font-size:11px;font-weight:700;color:var(--mint-dark);letter-spacing:.06em;display:flex;align-items:center;gap:6px;margin:14px 0 6px;padding:0 2px;}
+.area-div::after{content:'';flex:1;height:1px;background:var(--mint);opacity:.3;}
+.area-div.limited{color:#d97706;}
 .area-div.limited::after{background:#f59e0b;opacity:.4;}
 
-.submit-btn{width:100%;padding:15px;border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);background:var(--lime);color:var(--ink);font-size:15px;font-weight:900;font-family:'Noto Sans JP',sans-serif;cursor:pointer;box-shadow:var(--shadow-sm);transition:all .1s;margin-top:1.25rem;letter-spacing:.04em;}
-.submit-btn:hover{background:var(--lime-dark);}
-.submit-btn:active{box-shadow:none;transform:translate(2px,2px);}
+.submit-btn{width:100%;padding:15px;border:none;border-radius:var(--radius-sm);background:var(--mint);color:#fff;font-size:15px;font-weight:700;font-family:'Noto Sans JP',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(61,217,179,0.35);transition:all .15s;margin-top:1.25rem;letter-spacing:.04em;}
+.submit-btn:hover{background:var(--mint-dark);}
+.submit-btn:active{transform:scale(0.98);}
 .submit-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none;}
 
-.voter-section{background:var(--card);border-radius:var(--radius);border:var(--border-w) solid var(--ink);box-shadow:var(--shadow);padding:1.25rem 1.5rem;margin-bottom:1.5rem;}
+.voter-section{background:var(--card);border-radius:var(--radius);border:none;box-shadow:var(--shadow);padding:1.25rem 1.5rem;margin-bottom:1.5rem;}
 .voter-head{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:10px;}
 .voter-chips{display:flex;flex-wrap:wrap;gap:6px;}
-.chip{font-size:12px;padding:4px 12px;border-radius:99px;background:var(--bg);border:1.5px solid var(--ink);color:var(--ink);font-weight:700;}
-.chip.me{background:var(--lime);border-color:var(--ink);}
+.chip{font-size:12px;padding:4px 12px;border-radius:99px;background:#f0f4f8;border:none;color:var(--ink2);font-weight:500;}
+.chip.me{background:var(--mint-light);color:var(--mint-dark);font-weight:700;}
 
-.rank-panel{background:var(--card);border-radius:var(--radius);border:var(--border-w) solid var(--ink);box-shadow:var(--shadow);padding:1.5rem;}
+.rank-panel{background:var(--card);border-radius:var(--radius);border:none;box-shadow:var(--shadow);padding:1.5rem;}
 .rank-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
 .rank-title{font-size:15px;font-weight:900;color:var(--ink);}
-.refresh-btn{font-size:12px;font-weight:700;color:var(--ink);background:var(--bg);border:1.5px solid var(--ink);border-radius:var(--radius-sm);padding:5px 12px;cursor:pointer;font-family:'Noto Sans JP',sans-serif;box-shadow:var(--shadow-sm);transition:all .1s;}
-.refresh-btn:active{box-shadow:none;transform:translate(2px,2px);}
+.refresh-btn{font-size:12px;font-weight:500;color:var(--ink2);background:#f0f4f8;border:none;border-radius:99px;padding:5px 14px;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .15s;}
+.refresh-btn:hover{background:#e5e9ef;}.refresh-btn:active{transform:scale(0.98);}
 
-.rank-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1.5px solid rgba(0,0,0,0.08);}
+.rank-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f3f4f6;}
 .rank-row:last-child{border-bottom:none;}
 .rank-num{width:24px;font-size:16px;font-weight:900;color:rgba(0,0,0,0.25);text-align:center;flex-shrink:0;}
 .rank-num.top{color:var(--ink);}
 .rank-thumb{width:48px;height:48px;border-radius:10px;background:var(--bg);border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
 .rank-name{font-size:13px;font-weight:700;color:var(--ink);flex:1;line-height:1.4;}
-.votes-badge{font-size:12px;font-weight:700;background:var(--bg);border:1.5px solid var(--ink);border-radius:99px;padding:3px 10px;color:var(--ink);white-space:nowrap;flex-shrink:0;}
-.votes-badge.has{background:var(--lime);border-color:var(--ink);}
+.votes-badge{font-size:12px;font-weight:500;background:#f0f4f8;border:none;border-radius:99px;padding:3px 10px;color:var(--ink2);white-space:nowrap;flex-shrink:0;}
+.votes-badge.has{background:var(--mint-light);color:var(--mint-dark);font-weight:700;}
 .voted-by{font-size:10px;color:var(--ink2);margin-top:3px;display:flex;flex-wrap:wrap;gap:3px;}
 .voted-by span{background:var(--bg);border:1px solid rgba(0,0,0,0.15);border-radius:4px;padding:1px 5px;font-weight:700;}
 .voted-by span.r1{background:var(--lime);}
 .voted-by span.r2{background:#d4f0ff;}
 .voted-by span.r3{background:#ffd6f5;}
-.rank-section{margin-top:0;}
+.rank-section{margin-top:1.5rem;}
 .empty-msg{font-size:13px;color:rgba(0,0,0,0.3);padding:8px 0;}
 
 /* 休止中パネル */
-.closed-panel{background:var(--red-bg);border:var(--border-w) solid var(--red);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;margin-top:1.5rem;}
+.closed-panel{background:var(--red-bg);border:none;border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;margin-top:1.5rem;}
 .closed-title{font-size:15px;font-weight:900;color:var(--red);margin-bottom:1rem;display:flex;align-items:center;gap:6px;}
 .closed-list{display:flex;flex-direction:column;gap:8px;}
-.closed-item{display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--red-border);border-radius:var(--radius-sm);padding:10px 13px;}
+.closed-item{display:flex;align-items:center;gap:12px;background:var(--card);border:none;border-radius:var(--radius-sm);padding:10px 13px;}
 .closed-thumb{width:44px;height:44px;border-radius:9px;background:#fee2e2;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
 .closed-name{font-size:13px;font-weight:700;color:var(--ink);flex:1;}
 .closed-period{font-size:11px;color:var(--red);margin-top:2px;font-weight:700;}
 .closed-badge{font-size:10px;font-weight:900;padding:3px 10px;border-radius:99px;white-space:nowrap;flex-shrink:0;border:1.5px solid;}
-.badge-permanent{background:#fee2e2;color:var(--red);border-color:var(--red);}
-.badge-temp{background:#fef9c3;color:#92400e;border-color:#d97706;}
+.badge-permanent{background:#fee2e2;color:#dc2626;border:none;}
+.badge-temp{background:#fef9c3;color:#92400e;border:none;}
 
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 20px;border-radius:var(--radius-sm);font-size:13px;font-weight:700;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;}
 .toast.show{opacity:1;}
@@ -154,92 +159,256 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh
   </div>
 
 
-  <!-- 予算セクション -->
-  <div class="panel" id="budget-section">
-    <div class="panel-title">💰 予算案（5人 / 6月28日）</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-bottom:1.25rem;">
-      <!-- プランA -->
-      <div style="background:var(--bg);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:1rem;">
-        <div style="font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:10px;letter-spacing:.06em;">スタジオパスのみ　<a href="https://store.usj.co.jp/ja/jp/c/ticket/1DBASIC" target="_blank" style="font-size:10px;color:var(--ink2);text-decoration:underline;font-weight:700;">詳細はこちら ↗</a></div>
-        <div style="background:var(--card);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:10px;text-align:center;">
-          <div style="font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:2px;">1人あたり</div>
-          <div style="font-size:32px;font-weight:900;color:var(--ink);line-height:1.1;">8,900<span style="font-size:16px;">円</span></div>
+  <!-- TODOリスト -->
+  <div class="panel" id="todo-section">
+    <div class="panel-title">✅ 事前準備TODOリスト</div>
+    <div style="font-size:13px;color:var(--ink2);margin-bottom:1.25rem;">チェックしながら準備を進めよう！（チェックはこのデバイスのみ保存）</div>
+
+    <style>
+      .todo-phase{margin-bottom:1.25rem;}
+      .todo-phase-title{font-size:12px;font-weight:700;color:var(--ink2);letter-spacing:.06em;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+      .todo-phase-title::after{content:'';flex:1;height:1px;background:rgba(0,0,0,0.1);}
+      .todo-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,0.06);cursor:pointer;user-select:none;}
+      .todo-item:last-child{border-bottom:none;}
+      .todo-cb{width:20px;height:20px;border-radius:6px;border:2px solid #e0e0e0;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s;background:#f8fafc;}
+      .todo-item.checked .todo-cb{background:var(--mint);border-color:var(--mint);}
+      .todo-item.checked .todo-cb::after{content:'✓';font-size:12px;font-weight:700;color:#fff;}
+      .todo-item.checked .todo-main{opacity:.45;text-decoration:line-through;}
+      .todo-main{flex:1;min-width:0;}
+      .todo-text{font-size:13px;font-weight:700;color:var(--ink);line-height:1.4;}
+      .todo-sub{font-size:11px;color:var(--ink2);margin-top:2px;line-height:1.5;}
+      .todo-tag{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;border:1.5px solid var(--ink);margin-right:4px;}
+      .tag-app{background:var(--mint-light);color:var(--mint-dark);}
+      .tag-group{background:var(--bg);color:var(--ink2);}
+      .todo-progress{background:rgba(0,0,0,0.08);border-radius:99px;height:6px;overflow:hidden;margin-bottom:4px;}
+      .todo-progress-fill{height:100%;background:var(--mint);border-radius:99px;transition:width .3s;}
+      .todo-prog-label{font-size:11px;color:var(--ink2);margin-bottom:10px;text-align:right;}
+    </style>
+
+    <div class="todo-progress"><div class="todo-progress-fill" id="todo-fill" style="width:0%"></div></div>
+    <div class="todo-prog-label" id="todo-label">0 / 0 完了</div>
+
+    <div class="todo-phase">
+      <div class="todo-phase-title">前々日まで</div>
+      <div class="todo-item" onclick="toggleTodo(this)">
+        <div class="todo-cb"></div>
+        <div class="todo-main">
+          <div class="todo-text"><span class="todo-tag tag-app">アプリ</span>USJ公式アプリをインストールする</div>
+          <div class="todo-sub">全員のスマートフォンにインストール（App Store / Google Play）</div>
         </div>
-        <div style="font-size:11px;color:var(--ink2);margin-bottom:6px;">5人合計：44,500円</div>
-        <div style="font-size:11px;color:var(--ink2);line-height:1.7;">入場券のみ<br>整理券を当日取得<br>（確約なし）</div>
       </div>
-      <!-- プランB -->
-      <div style="background:var(--lime);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:1rem;box-shadow:var(--shadow-sm);">
-        <div style="font-size:11px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:.06em;">スタジオパス＋EXパス4　<a href="https://store.usj.co.jp/ja/jp/c/expresspass/EXP0069" target="_blank" style="font-size:10px;color:var(--ink2);text-decoration:underline;font-weight:700;">詳細はこちら ↗</a></div>
-        <div style="background:var(--ink);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:10px;text-align:center;">
-          <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:2px;">1人あたり</div>
-          <div style="font-size:32px;font-weight:900;color:var(--lime);line-height:1.1;">25,700<span style="font-size:16px;">円</span></div>
+      <div class="todo-item" onclick="toggleTodo(this)">
+        <div class="todo-cb"></div>
+        <div class="todo-main">
+          <div class="todo-text"><span class="todo-tag tag-app">アプリ</span>代表者：アプリに全員分のスタジオパスを登録する</div>
+          <div class="todo-sub">QRコードをグループLINEで共有 → 代表者がまとめて登録</div>
         </div>
-        <div style="font-size:11px;color:var(--ink);margin-bottom:6px;">5人合計：128,500円</div>
-        <div style="font-size:11px;color:var(--ink);line-height:1.7;">EXパス4（16,800円）付き<br>ドンキーコング確約<br>マリオカート含む4本</div>
+      </div>
+      <div class="todo-item" onclick="toggleTodo(this)">
+        <div class="todo-cb"></div>
+        <div class="todo-main">
+          <div class="todo-text"><span class="todo-tag tag-app">アプリ</span>代表者：EXパス4もアプリに登録する</div>
+          <div class="todo-sub">入場後すぐ使えるように前日までに登録しておく</div>
+        </div>
       </div>
     </div>
-    <div style="background:var(--bg);border:1.5px dashed var(--ink);border-radius:var(--radius-sm);padding:12px;font-size:12px;color:var(--ink2);line-height:1.7;">
-      ※ EXパス5（18,900円）の場合は5人合計 <strong style="color:var(--ink)">139,000円</strong>（1人27,800円）<br>
-      ※ 6/28（日）スタジオパス料金はカレンダーより確認済み<br>
-      ※ EXパス4・5の6/28価格も公式カレンダーより確認済み
+
+    <div class="todo-phase">
+      <div class="todo-phase-title">前日まで</div>
+      <div class="todo-item" onclick="toggleTodo(this)">
+        <div class="todo-cb"></div>
+        <div class="todo-main">
+          <div class="todo-text"><span class="todo-tag tag-group">グループ</span>集合時間・場所をグループLINEで確認する</div>
+          <div class="todo-sub">8:30 USJ入場口に集合</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTodo(this)">
+        <div class="todo-cb"></div>
+        <div class="todo-main">
+          <div class="todo-text"><span class="todo-tag tag-group">グループ</span>当日スケジュールを全員で共有する</div>
+          <div class="todo-sub">13:10〜 EXパス4でニンテンドーワールド入場を全員が把握</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTodo(this)">
+        <div class="todo-cb"></div>
+        <div class="todo-main">
+          <div class="todo-text">モバイルバッテリーを準備する</div>
+          <div class="todo-sub">代表者は特に必須（チケット・整理券管理のため）。100%で出発。</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTodo(this)">
+        <div class="todo-cb"></div>
+        <div class="todo-main">
+          <div class="todo-text">服装・持ち物を確認する</div>
+          <div class="todo-sub">歩きやすい靴、動きやすい服装、必要ならレインコート</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTodo(this)">
+        <div class="todo-cb"></div>
+        <div class="todo-main">
+          <div class="todo-text">現金・電子マネーを準備する</div>
+          <div class="todo-sub">USJはキャッシュレス対応。両方あると安心。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="todo-phase">
+      <div class="todo-phase-title">当日の朝</div>
+      <div class="todo-item" onclick="toggleTodo(this)">
+        <div class="todo-cb"></div>
+        <div class="todo-main">
+          <div class="todo-text"><span class="todo-tag tag-app">アプリ</span>アプリを開いてチケット登録を最終確認する</div>
+          <div class="todo-sub">代表者：全員分のQRコードが登録されているか確認</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTodo(this)">
+        <div class="todo-cb"></div>
+        <div class="todo-main">
+          <div class="todo-text"><span class="todo-tag tag-app">アプリ</span>ニンテンドーワールドの入場状況を確認する</div>
+          <div class="todo-sub">「フリー入場中」なら入場後すぐダッシュ！</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTodo(this)">
+        <div class="todo-cb"></div>
+        <div class="todo-main">
+          <div class="todo-text">モバイルバッテリーの充電を確認する</div>
+          <div class="todo-sub">100%で出発する</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- スケジュール案 -->
   <div class="panel" id="schedule-section">
-    <div class="panel-title">🗓 当日スケジュール案（7:00集合）</div>
+    <div class="panel-title">🗓 当日スケジュール（確定版）</div>
+    <div style="font-size:13px;color:var(--ink2);margin-bottom:1.25rem;">8:30集合 ／ EXパス4：ニンテンドーワールド 13:10〜入場確約</div>
     <div style="position:relative;padding-left:64px;">
       <div style="position:absolute;left:44px;top:0;bottom:0;width:2px;background:rgba(0,0,0,0.12);"></div>
       <style>
         .tl{position:relative;margin-bottom:14px;}
         .tl-t{position:absolute;left:-64px;width:44px;text-align:right;font-size:11px;font-weight:700;color:var(--ink2);line-height:1.3;padding-top:3px;}
         .tl-d{position:absolute;left:-22px;top:7px;width:10px;height:10px;border-radius:50%;border:2px solid var(--bg);z-index:1;}
-        .d-red{background:#ff4d4d;}
-        .d-blue{background:#0057b8;}
-        .d-green{background:#2d8a2d;}
-        .d-gray{background:#888;}
-        .d-warn{background:#d97706;}
+        .d-red{background:#ff4d4d;}.d-blue{background:#0057b8;}.d-green{background:#2d8a2d;}.d-gray{background:#888;}.d-warn{background:#d97706;}
         .tl-c{background:var(--card);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:10px 13px;box-shadow:var(--shadow-sm);}
-        .tl-c.red{border-left:4px solid #ff4d4d;}
-        .tl-c.blue{border-left:4px solid #0057b8;}
-        .tl-c.green{border-left:4px solid #2d8a2d;}
-        .tl-c.warn{border-left:4px solid #d97706;}
+        .tl-c.red{border-left:4px solid #ff4d4d;}.tl-c.blue{border-left:4px solid #0057b8;}.tl-c.green{border-left:4px solid #2d8a2d;}.tl-c.warn{border-left:4px solid #d97706;}
         .tl-title{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:3px;}
         .tl-body{font-size:11px;color:var(--ink2);line-height:1.65;}
         .tl-badge{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;border:1.5px solid var(--ink);margin-left:5px;}
-        .tb-red{background:#ffe0e0;color:#cc0000;}
-        .tb-blue{background:#e0eeff;color:#0044aa;}
-        .tb-green{background:#e0f5e0;color:#1a6e1a;}
-        .tb-gray{background:var(--bg);color:var(--ink2);}
+        .tb-red{background:#ffe0e0;color:#cc0000;}.tb-blue{background:#e0eeff;color:#0044aa;}.tb-green{background:#e0f5e0;color:#1a6e1a;}.tb-gray{background:var(--bg);color:var(--ink2);}
+        .ride-card{background:var(--bg);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:10px 12px;display:flex;align-items:center;gap:10px;margin-top:8px;}
       </style>
-      <div class="tl"><div class="tl-t">7:00</div><div class="tl-d d-red"></div>
-        <div class="tl-c red"><div class="tl-title">USJ入場口に集合<span class="tl-badge tb-red">集合</span></div>
-        <div class="tl-body">アプリ起動・チケット登録を前日に完了させておくこと。代表者がe整理券取得担当。</div></div></div>
-      <div class="tl"><div class="tl-t">7:30〜<br>8:00</div><div class="tl-d d-red"></div>
-        <div class="tl-c red"><div class="tl-title">前倒し開園・入場後すぐe整理券取得<span class="tl-badge tb-red">最重要</span></div>
-        <div class="tl-body">入場直後に代表者が5人分のニンテンドーワールド整理券をアプリで取得。早い時間帯を指定。</div></div></div>
-      <div class="tl"><div class="tl-t">8:00〜<br>9:00</div><div class="tl-d d-blue"></div>
-        <div class="tl-c blue"><div class="tl-title">ニンテンドーワールドへ直行（フリータイム狙い）<span class="tl-badge tb-blue">最優先</span></div>
-        <div class="tl-body">開園直後は整理券不要のフリー入場タイム。ドンキーコングのクレイジー・トロッコへ直行。</div></div></div>
-      <div class="tl"><div class="tl-t">9:00〜<br>10:00</div><div class="tl-d d-blue"></div>
-        <div class="tl-c blue"><div class="tl-title">ドンキーコングのクレイジー・トロッコ 🍌<span class="tl-badge tb-blue">必須①</span></div>
-        <div class="tl-body">乗車後はエリアを出ないこと。ヨッシーへ移動。待ち時間目安30〜60分。</div></div></div>
-      <div class="tl"><div class="tl-t">10:00〜<br>10:45</div><div class="tl-d d-blue"></div>
-        <div class="tl-c blue"><div class="tl-title">ヨッシー・アドベンチャー 🐢<span class="tl-badge tb-blue">必須②</span></div>
-        <div class="tl-body">待ち時間目安20〜40分。エリア内でマリオカートも時間があれば。</div></div></div>
-      <div class="tl"><div class="tl-t">10:45〜<br>11:30</div><div class="tl-d d-green"></div>
-        <div class="tl-c green"><div class="tl-title">キノピオカフェ：キノコのキッシュ 🌿<span class="tl-badge tb-green">必須③</span></div>
-        <div class="tl-body">11時前後は比較的空いていて狙い目。必須3つ完了！ここでエリアを出る。</div></div></div>
-      <div class="tl"><div class="tl-t">11:30〜<br>14:00</div><div class="tl-d d-gray"></div>
-        <div class="tl-c"><div class="tl-title">他エリアのアトラクション＆ランチ<span class="tl-badge tb-gray">自由行動</span></div>
-        <div class="tl-body">ハリポタ・ミニオン・フライングダイナソーなど。11時台に早めのランチを推奨（12〜13時は最混雑）。</div></div></div>
-      <div class="tl"><div class="tl-t">14:00〜<br>15:00</div><div class="tl-d d-warn"></div>
-        <div class="tl-c warn"><div class="tl-title">NO LIMIT! パレード観覧<span class="tl-badge" style="background:#fef9c3;color:#92400e;border:1.5px solid var(--ink)">混雑ピーク</span></div>
-        <div class="tl-body">この時間帯はアトラクション待ち時間が最大。パレードで休憩するのが得策。</div></div></div>
-      <div class="tl"><div class="tl-t">15:00〜<br>閉園</div><div class="tl-d d-gray"></div>
-        <div class="tl-c"><div class="tl-title">残りアトラクション・お土産<span class="tl-badge tb-gray">自由行動</span></div>
-        <div class="tl-body">夕方以降ニンテンドーワールドがフリー入場に戻る場合あり。アプリで随時確認。</div></div></div>
+
+      <div class="tl"><div class="tl-t">〜前日</div><div class="tl-d d-gray"></div>
+        <div class="tl-c"><div class="tl-title">前日までに準備<span class="tl-badge tb-gray">必須</span></div>
+        <div class="tl-body">
+          ① 全員：USJ公式アプリをインストール<br>
+          ② 各自：スタジオパスのQRコードをスクショ → グループLINEに送る<br>
+          ③ 代表者：全員分のQRコードをアプリに登録<br>
+          ④ 代表者：EXパス4もアプリに登録済みか確認<br>
+          ⑤ 全員：モバイルバッテリーを準備（代表者は特に必須）
+        </div></div></div>
+
+      <div class="tl"><div class="tl-t">8:30</div><div class="tl-d d-red"></div>
+        <div class="tl-c red"><div class="tl-title">USJ入場口に集合・入場<span class="tl-badge tb-red">集合</span></div>
+        <div class="tl-body">入場後すぐ代表者がアプリでニンテンドーワールドの状況を確認。フリー入場中なら即ダッシュ！</div></div></div>
+
+      <div class="tl"><div class="tl-t">8:30〜<br>9:30</div><div class="tl-d d-blue"></div>
+        <div class="tl-c blue"><div class="tl-title">ニンテンドーワールドへ直行（フリータイム狙い）<span class="tl-badge tb-blue">試みる</span></div>
+        <div class="tl-body">入場直後はフリー入場の可能性あり。入れたらヨッシー・アドベンチャーとキノコのキッシュを先に済ませておく。入れない場合は他エリアへ。</div></div></div>
+
+      <div class="tl"><div class="tl-t">9:30〜<br>12:30</div><div class="tl-d d-gray"></div>
+        <div class="tl-c"><div class="tl-title">他エリアのアトラクション＆早めのランチ<span class="tl-badge tb-gray">自由行動</span></div>
+        <div class="tl-body">
+          おすすめ優先順：<br>
+          🧙 ハリポタ・フォービドゥン・ジャーニー<br>
+          🦖 ザ・フライング・ダイナソー<br>
+          🎢 ハリウッド・ドリーム・ザ・ライド<br>
+          🚤 ジョーズ<br>
+          🟡 ミニオン・ハチャメチャ・ライド<br>
+          ⚡ 呪術廻戦×ストーリー・ライド（ハリドリ搭載）<br>
+          ランチは11〜12時台に済ませておくのがベスト（12〜13時は最混雑）
+        </div></div></div>
+
+      <div class="tl"><div class="tl-t">13:00</div><div class="tl-d d-warn"></div>
+        <div class="tl-c warn"><div class="tl-title">ニンテンドーワールド入口へ移動<span class="tl-badge" style="background:#fef9c3;color:#92400e;border:1.5px solid var(--ink);">準備</span></div>
+        <div class="tl-body">EXパス4の入場時間（13:10）に備えてエリア入口付近に集合しておく。</div></div></div>
+
+      <div class="tl"><div class="tl-t">13:10</div><div class="tl-d d-red"></div>
+        <div class="tl-c red">
+          <div class="tl-title">EXパス4：ニンテンドーワールド入場確約🎉<span class="tl-badge tb-red">確約</span></div>
+          <div class="tl-body">エリア入場（再入場不可）。入ったら出ないこと！</div>
+          <div class="ride-card">
+            <div style="font-size:22px;">🏎️</div>
+            <div><div style="font-size:13px;font-weight:700;color:var(--ink);">マリオカート〜クッパの挑戦状〜</div>
+            <div style="font-size:11px;color:var(--ink2);">13:10 〜 13:40（EXパス確約）</div></div>
+          </div>
+          <div class="ride-card">
+            <div style="font-size:22px;">🍌</div>
+            <div><div style="font-size:13px;font-weight:700;color:var(--ink);">ドンキーコングのクレイジー・トロッコ</div>
+            <div style="font-size:11px;color:var(--ink2);">13:40 〜 14:10（EXパス確約）</div></div>
+          </div>
+        </div></div>
+
+      <div class="tl"><div class="tl-t">14:10〜<br>15:00</div><div class="tl-d d-green"></div>
+        <div class="tl-c green"><div class="tl-title">ヨッシー・アドベンチャー＆キノコのキッシュ<span class="tl-badge tb-green">必須</span></div>
+        <div class="tl-body">
+          🐢 ヨッシー・アドベンチャー（待ち時間目安20〜40分）<br>
+          🌿 キノピオカフェでキノコのキッシュ<br>
+          ※エリアを出る前に必ず済ませること（再入場不可）<br>
+          ※朝フリータイムで入れた場合はこのステップをスキップ
+        </div></div></div>
+
+      <div class="tl"><div class="tl-t">15:00〜<br>16:30</div><div class="tl-d d-gray"></div>
+        <div class="tl-c"><div class="tl-title">残りのアトラクション・パレード<span class="tl-badge tb-gray">自由行動</span></div>
+        <div class="tl-body">
+          🎊 NO LIMIT! パレード（14時頃開催）を先に見ていない場合はこの時間に<br>
+          パレード後は混雑が少し落ち着くタイミング
+        </div></div></div>
+
+      <div class="tl"><div class="tl-t">16:30〜<br>閉園</div><div class="tl-d d-gray"></div>
+        <div class="tl-c"><div class="tl-title">お土産・グッズ・夕食<span class="tl-badge tb-gray">自由行動</span></div>
+        <div class="tl-body">
+          ニンテンドーワールドのグッズはパーク内限定品が多いので忘れずに！<br>
+          夕方以降にニンテンドーワールドがフリー入場に戻る日もあるのでアプリで確認を。
+        </div></div></div>
+
+    </div>
+  </div>
+
+  <!-- 予算セクション -->
+  <div class="panel" id="budget-section">
+    <div class="panel-title">💰 予算（5人 / 6月28日）</div>
+    <div style="font-size:13px;color:var(--ink2);margin-bottom:1.25rem;">✅ スタジオパス＋EXパス4に決定！</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;">
+      <div style="background:var(--bg);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:12px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:4px;">スタジオパス / 1人</div>
+        <div style="font-size:26px;font-weight:900;color:var(--ink);line-height:1.1;">8,900<span style="font-size:14px;">円</span></div>
+        <div style="font-size:11px;color:var(--ink2);margin-top:4px;"><a href="https://store.usj.co.jp/ja/jp/c/ticket/1DBASIC" target="_blank" style="color:var(--ink2);text-decoration:underline;">詳細はこちら ↗</a></div>
+      </div>
+      <div style="background:var(--bg);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);padding:12px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:4px;">EXパス4 / 1人</div>
+        <div style="font-size:26px;font-weight:900;color:var(--ink);line-height:1.1;">16,800<span style="font-size:14px;">円</span></div>
+        <div style="font-size:11px;color:var(--ink2);margin-top:4px;"><a href="https://store.usj.co.jp/ja/jp/c/expresspass/EXP0069" target="_blank" style="color:var(--ink2);text-decoration:underline;">詳細はこちら ↗</a></div>
+      </div>
+    </div>
+
+    <div style="background:var(--lime);border:var(--border-w) solid var(--ink);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);padding:1rem;margin-bottom:1rem;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--ink);margin-bottom:2px;">1人あたり合計</div>
+          <div style="font-size:36px;font-weight:900;color:var(--ink);line-height:1.1;">25,700<span style="font-size:16px;">円</span></div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:11px;font-weight:700;color:var(--ink);margin-bottom:2px;">5人合計</div>
+          <div style="font-size:24px;font-weight:900;color:var(--ink);line-height:1.1;">128,500<span style="font-size:14px;">円</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:12px;color:var(--ink2);line-height:1.8;">
+      ※ 6/28（日）価格は公式カレンダーより確認済み<br>
+      ※ EXパス4：ドンキーコング・マリオカート含む4本確約
     </div>
   </div>
 
@@ -248,7 +417,9 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh
     <div class="voter-chips" id="voter-list"><div class="chip">読み込み中...</div></div>
   </div>
 
+
   <div class="two-col rank-section" style="margin-bottom:1.5rem;">
+
     <div class="rank-panel">
       <div class="rank-head">
         <div class="rank-title">📈 アトラクション人気ランキング</div>
@@ -637,6 +808,17 @@ async function loadResults(){
 }
 
 renderLists();
+
+function toggleTodo(el){
+  el.classList.toggle('checked');
+  const items=document.querySelectorAll('.todo-item');
+  const done=document.querySelectorAll('.todo-item.checked').length;
+  const total=items.length;
+  document.getElementById('todo-fill').style.width=(total?done/total*100:0)+'%';
+  document.getElementById('todo-label').textContent=done+' / '+total+' 完了';
+}
+const allItems=document.querySelectorAll('.todo-item');
+document.getElementById('todo-label').textContent='0 / '+allItems.length+' 完了';
 </script>
 </body>
 </html>
